@@ -16,13 +16,14 @@ version: '3.8'
 
 services:
   tekkit2-server:
-    image: gregdock97/tekkit2-server:ram
+    image: gregdock97/tekkit2-server:latest # Add :rpi4 for the raspberry image
     container_name: tekkit2-server
     restart: unless-stopped
     ports:
       - "25565:25565"
     environment:
-      MEMORY: 3G  # Adjust RAM here!
+      MEMORY: 15G      # Adjust RAM here!
+      TZ: Eurpoe/Oslo  # Remember change!
     volumes:
       - tekkit2-data:/tekkit2
 
@@ -56,14 +57,36 @@ Or just rum this in the commandline:
 docker run -d --name tekkit2-server \
   -p 25565:25565 \
   -v tekkit2-data:/tekkit2 \
-  -e MEMORY=3G \
+  -e MEMORY=5G \
+  -e TZ=Europe/Oslo \
   --restart unless-stopped \
   gregdock97/tekkit2-server:latest
 ```
 
+# Raspberry Pi
+
+Just change the image to:
+
+```yaml 
+gregdock97/tekkit2-server:rpi4 
+```
+
+
+
+
 
 # CHANGES
+**2025-04-04**
+- Added Raspberry Pi Image on :rpi4 tag
+- rpi4 image is based on "mcr.microsoft.com/openjdk/jdk:8-mariner"
+
+**2025-04-03**
+- UPDATED to TEKKIT 2 - 1.2.5
+- Made a Launch.sh file that runs the CMD command form earlier versions
+- Removed :old tag
+- added TZ veriable
 
 **2025-02-15**
-- Added the option to change the RAM, default value is 3GB
+- Added the option to change the RAM, default value is 5GB
 - Deleted some obeselete files
+- added a new image "old", for the first image with no RAM change (20 GB)
