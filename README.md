@@ -1,6 +1,23 @@
+
 # Tekkit 2 Server
 
-This Docker image provides a ready-to-use Tekkit 2 server, a renowned modpack for Minecraft that blends technology and adventure. The image is built upon "openjdk:8-jdk-alpine" and includes all necessary dependencies to run a Tekkit 2 server seamlessly.
+This Docker image provides a ready-to-use Tekkit 2 server, a renowned modpack for Minecraft that blends technology and adventure. The image is built upon "mcr.microsoft.com/openjdk/jdk:8-mariner" and includes all necessary dependencies to run a Tekkit 2 server seamlessly.
+
+https://hub.docker.com/repository/docker/gregdock97/tekkit2-server/gene
+
+## IMAGES
+
+| TAG        | Tekkit version |
+| ---------- | -------------- |
+| latest     | 1.2.5          |
+| alpine     | 1.2.5          |
+| rpi4       | 1.2.5          |
+| 1.2.4      | 1.2.4          |
+
+## OBS,OBS
+
+Base-image change from *ALPINE* to *CBL-MARINER*, for those who still want to use *ALPINE* need to change the tag to "alpine"
+
 
 **Features:**
 
@@ -23,7 +40,7 @@ services:
       - "25565:25565"
     environment:
       MEMORY: 15G      # Adjust RAM here!
-      TZ: Eurpoe/Oslo  # Remember change!
+      TZ: Europe/Oslo  # Remember change!
     volumes:
       - tekkit2-data:/tekkit2
 
@@ -71,22 +88,3 @@ Just change the image to:
 gregdock97/tekkit2-server:rpi4 
 ```
 
-
-
-
-
-# CHANGES
-**2025-04-04**
-- Added Raspberry Pi Image on :rpi4 tag
-- rpi4 image is based on "mcr.microsoft.com/openjdk/jdk:8-mariner"
-
-**2025-04-03**
-- UPDATED to TEKKIT 2 - 1.2.5
-- Made a Launch.sh file that runs the CMD command form earlier versions
-- Removed :old tag
-- added TZ veriable
-
-**2025-02-15**
-- Added the option to change the RAM, default value is 5GB
-- Deleted some obeselete files
-- added a new image "old", for the first image with no RAM change (20 GB)
